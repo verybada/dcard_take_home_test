@@ -1,0 +1,56 @@
+run:
+  tests: false  # include no test files
+  skip-dirs:
+    - autotest
+    - doc
+    - performance-test
+    - res
+    - submodule
+
+linters:
+  enable:
+    - deadcode
+    - depguard
+    - errcheck
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - gosimple
+    - ineffassign
+    - interfacer
+    - misspell
+    - nakedret
+    - prealloc
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - govet
+    - golint
+    - scopelint
+    - lll
+  disable:
+    # Ignore suggestion from these linters
+    - dupl
+    - gochecknoglobals
+    - gochecknoinits
+    - gosec
+    - maligned
+    - typecheck
+
+linters-settings:
+  gocritic:
+    disabled-checks:
+      - ifElseChain
+  lll:
+    line-length: 80
+    tab-width: 4
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

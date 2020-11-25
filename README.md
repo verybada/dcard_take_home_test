@@ -24,3 +24,19 @@
 3. 啟動api server
     `build/bin/api_server`
     * 預設為8080，若衝突可透過 -host `":XXXX"`調整
+    
+## 測試結果
+* 每秒50requests連續十秒，由Status Codes欄位確認僅有60個200 OK，其餘皆是429
+```
+>>> echo "GET http://localhost:8080" | vegeta attack -duration 10s -rate 50 | vegeta report
+Requests      [total, rate, throughput]  500, 50.10, 6.01
+Duration      [total, attack, wait]      9.981217469s, 9.979887371s, 1.330098ms
+Latencies     [mean, 50, 95, 99, max]    1.306891ms, 1.089154ms, 2.224025ms, 4.64406ms, 7.170058ms
+Bytes In      [total, mean]              2311, 4.62
+Bytes Out     [total, mean]              0, 0.00
+Success       [ratio]                    12.00%
+Status Codes  [code:count]               200:60  429:440  
+Error Set:
+429 Too Many Requests
+
+```
